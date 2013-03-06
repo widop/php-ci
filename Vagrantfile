@@ -26,7 +26,8 @@ Vagrant::Config.run do |config|
         chef.add_recipe "box::php-ext"
         chef.add_recipe "box::php-pear"
 
-        chef.add_recipe "selenium::chrome"
+        chef.add_recipe "selenium::server"
+        chef.add_recipe "selenium::firefox"
 
         chef.add_recipe "apache2"
         chef.add_recipe "apache2::mod_php5"
@@ -73,7 +74,7 @@ Vagrant::Config.run do |config|
                     "home" => "/var/lib/jenkins",
                 },
                "server" => {
-                    "plugins" => ["URLSCM", "git", "github", "github-api", "sonar", "ansicolor", "checkstyle", "cloverphp", "dry", "htmlpublisher", "jdepend", "plot", "pmd", "violations", "xunit"]
+                    "plugins" => ["URLSCM", "sonar", "ansicolor", "checkstyle", "cloverphp", "dry", "htmlpublisher", "jdepend", "plot", "pmd", "violations", "xunit", "git", "github", "github-api"]
                 }
             },
             "java" => {

@@ -2,6 +2,9 @@ include_recipe 'selenium::default'
 include_recipe 'runit'
 
 package 'xvfb'
+package "xfonts-base"
+package "xfonts-75dpi"
+package "xfonts-100dpi"
 
 directory node['selenium']['server']['installpath']
 
