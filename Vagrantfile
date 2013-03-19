@@ -26,9 +26,6 @@ Vagrant::Config.run do |config|
         chef.add_recipe "box::php-ext"
         chef.add_recipe "box::php-pear"
 
-        chef.add_recipe "selenium::server"
-        chef.add_recipe "selenium::firefox"
-
         chef.add_recipe "apache2"
         chef.add_recipe "apache2::mod_php5"
 

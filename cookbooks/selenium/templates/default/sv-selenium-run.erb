@@ -1,2 +1,0 @@
-#!/bin/sh
-exec chpst -u <%= node['selenium']['server']['user'] %> xvfb-run --server-args="-screen 0 <%= node['selenium']['server']['fbsize'] %>" java -jar <%= File.join(node['selenium']['server']['installpath'], 'selenium-server-standalone.jar') %> 2>&1
