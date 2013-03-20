@@ -29,6 +29,8 @@ Vagrant::Config.run do |config|
         chef.add_recipe "apache2"
         chef.add_recipe "apache2::mod_php5"
 
+        chef.add_recipe "google-chrome"
+
         chef.add_recipe "mysql::server"
 
         chef.add_recipe "java"
@@ -43,6 +45,7 @@ Vagrant::Config.run do |config|
         chef.add_recipe "box::sonar-plugin"
 
         chef.add_recipe "box::lesscss"
+        chef.add_recipe "box::selenium"
 
         chef.json = {
             "php" => {
@@ -71,7 +74,23 @@ Vagrant::Config.run do |config|
                     "home" => "/var/lib/jenkins",
                 },
                "server" => {
-                    "plugins" => ["URLSCM", "sonar", "ansicolor", "checkstyle", "cloverphp", "dry", "htmlpublisher", "jdepend", "plot", "pmd", "violations", "xunit", "git", "github", "github-api"]
+                    "plugins" => [
+                        "URLSCM",
+                        "sonar",
+                        "git",
+                        "github",
+                        "github-api",
+                        "ansicolor",
+                        "checkstyle",
+                        "cloverphp",
+                        "dry",
+                        "htmlpublisher",
+                        "jdepend",
+                        "plot",
+                        "pmd",
+                        "violations",
+                        "xunit"
+                    ]
                 }
             },
             "java" => {

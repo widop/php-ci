@@ -1,14 +1,23 @@
+package "unzip"
+package "xvfb"
+
+directory "/opt/selenium" do
+    action :create
+end
+
 execute "Install selenium" do
-    command "sudo rm -rf /opt/selenium-server-standalone* && sudo rm -rf /opt/chromedriver*"
-    command "sudo curl -o /opt/selenium-server-standalone.jar http://selenium.googlecode.com/files/selenium-server-standalone-2.30.0.jar"
-    command "sudo curl -o /opt/chromedriver https://chromedriver.googlecode.com/files/chromedriver_linux32_26.0.1383.0.zip"
-    action :run
+    command "sudo curl -o /opt/selenium/selenium-server-standalone.jar http://selenium.googlecode.com/files/selenium-server-standalone-2.30.0.jar"
+end
+
+execute "Install chrome driver" do
+    command "sudo curl -o /opt/selenium/chromedriver.zip https://chromedriver.googlecode.com/files/chromedriver_linux32_26.0.1383.0.zip"
 end
 
 execute "Unzip chromedriver" do
-    command "sudo unzip /opt/chromedriver_linux32_26.0.1383.0.zip"
+    command "sudo unzip -o /opt/selenium/chromedriver.zip"
 end
 
-execute "Launch selenium" do
-    command "DISPLAY=:1 xvfb-run java -jar /opt/selenium-server-standalone-2.30.0.jar -Dwebdriver.chrome.driver=/opt/chromedriver"
+template "/opt/selenium/start.sh" do
+    source "selenium/start.sh"
+    mode "0755"
 end

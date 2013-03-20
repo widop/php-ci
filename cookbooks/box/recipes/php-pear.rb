@@ -17,14 +17,6 @@ phpunit = php_pear_channel "pear.phpunit.de" do
     action :discover
 end
 
-phing = php_pear_channel "pear.phing.info" do
-    action :discover
-end
-
-phpdoc = php_pear_channel "pear.phpdoc.org" do
-    action :discover
-end
-
 php_pear "PHP_Depend" do
     channel pdepend.channel_name
     preferred_state "beta"
@@ -44,6 +36,11 @@ php_pear "PHP_CodeSniffer" do
     not_if "which phpcs"
 end
 
+php_pear "pear.phpunit.de/PHPUnit" do
+    action :install
+    not_if "which phpunit"
+end
+
 execute "Install Symfony2 coding standard for phpcs" do
     command "rm -rf /usr/share/php/PHP/CodeSniffer/Standards/Symfony2"
     command "git clone git://github.com/opensky/Symfony2-coding-standard.git /usr/share/php/PHP/CodeSniffer/Standards/Symfony2"
@@ -54,17 +51,3 @@ execute "Set Symfony2 coding standard to default for phpcs" do
     command "sudo phpcs --config-set default_standard Symfony2"
 end
 
-php_pear "pear.phpunit.de/PHPUnit" do
-    action :install
-    not_if "which phpunit"
-end
-
-php_pear "phpdoc/phpDocumentor-alpha" do
-    action :install
-    not_if "which phpdoc"
-end
-
-php_pear "phpqatools/PHP_CodeBrowser" do
-    action :install
-    not_if "which phpcb"
-end
