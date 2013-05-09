@@ -18,15 +18,14 @@
 #
 
 default['nodejs']['install_method'] = 'source'
-default['nodejs']['version'] = '0.6.11'
-default['nodejs']['checksum'] = '94bbdb2d62645fd2ad5b96e41cfec68abf004fd03fabaaf7d71c48b39013cbd1'
+default['nodejs']['version'] = '0.10.2'
+default['nodejs']['checksum'] = '4eb642897fdb945b49720f2604afc493587aec7a9ff1537e882df659e4dd8aa2'
+default['nodejs']['checksum_linux_x64'] = '44ff658b1c3ae027b75310e0173b7d069ae70f6adaed23d22f2e087f5048c428'
+default['nodejs']['checksum_linux_x86'] = '9970b12b1dda8cbb6272d90b073da90336bce8667b2d57936106bd50c4a035dd'
 default['nodejs']['dir'] = '/usr/local'
-default['nodejs']['npm'] = '1.1.2'
+default['nodejs']['npm'] = '1.2.14'
+default['nodejs']['src_url'] = "http://nodejs.org/dist"
+default['nodejs']['make_threads'] = node['cpu'] ? node['cpu']['total'].to_i : 2
 
-nodejs_tar_path = "node-v#{node['nodejs']['version']}.tar.gz"
-if node['nodejs']['version'].split('.')[1].to_i >= 5
-  nodejs_tar_path = "v#{node['nodejs']['version']}/#{nodejs_tar_path}"
-end
-
-default['nodejs']['src_url'] = "http://nodejs.org/dist/#{nodejs_tar_path}"
-default['nodejs']['npm_src_url'] = "http://registry.npmjs.org/npm/-/npm-#{node['nodejs']['npm']}.tgz"
+# Set this to true to install the legacy packages (0.8.x) from ubuntu/debian repositories; default is false (using the latest stable 0.10.x)
+default['nodejs']['legacy_packages'] = false

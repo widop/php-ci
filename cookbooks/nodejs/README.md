@@ -1,3 +1,5 @@
+# <a name="title"></a> nodejs-cookbook [![Build Status](https://secure.travis-ci.org/mdxp/nodejs-cookbook.png)](http://travis-ci.org/mdxp/nodejs-cookbook)
+
 DESCRIPTION
 ===========
 
@@ -9,12 +11,13 @@ REQUIREMENTS
 
 ## Platform
 
-* Tested on Debian 5+ and Ubuntu 10.04
+* Tested on Debian 6 and Ubuntu 10.04
 * Should work fine on Centos, RHEL, etc.
 
 ## Cookbooks:
 
 * build-essential
+* apt
 
 Opscode cookbooks (http://github.com/opscode/cookbooks/tree/master)
 
@@ -40,8 +43,15 @@ Include the install_from_source recipe to install node from sources:
 *  include_recipe "nodejs::install_from_source"
 
 Include the install_from_package recipe to install node from packages:
+Note that only apt (Ubuntu, Debian) appears to have up to date packages available.
+Centos, RHEL, etc are non-functional. (Try install_from_binary for those)
 
 *  include_recipe "nodejs::install_from_package"
+
+Include the install_from_binary recipe to install node from official prebuilt binaries:
+(Currently Linux x86, x86_64 only)
+
+*  include_recipe "nodejs::install_from_binary"
 
 Include the npm recipe to install npm:
 
